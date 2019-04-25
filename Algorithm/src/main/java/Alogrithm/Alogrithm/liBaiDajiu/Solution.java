@@ -1,4 +1,7 @@
-package Alogrithm.Alogrithm.liBaiDajiu;
+package Alogrithm.Alogrithm.LiBaiDajiu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 李白大酒 题目解法
@@ -9,8 +12,8 @@ public class Solution {
      * 使用二进制数字进行解题
      */
     public static void printWithNum() {
-        // 100000000000000  -  111111111100001
-        for (int i = 16384; i < 32737; i++) {
+        // 100000000000000  -  111111111100000
+        for (int i = 16384; i < 32736; i++) {
             int sum = 2;// 开始有2斗酒
             int flower = 0;
             int store = 0;
@@ -34,9 +37,9 @@ public class Solution {
                 tmpI = i;
                 while (j-- != 0) {
                     if (tmpI % 2 == 1) {
-                        System.out.print("a");
-                    } else {
                         System.out.print("b");
+                    } else {
+                        System.out.print("a");
                     }
                     tmpI /= 2;
                 }
@@ -47,5 +50,7 @@ public class Solution {
 
     public static void main(String[] args) {
         printWithNum();
+        List<Integer[]> list = new ArrayList<Integer[]>();
+        Integer a[] = new Integer[2147483647];
     }
 }

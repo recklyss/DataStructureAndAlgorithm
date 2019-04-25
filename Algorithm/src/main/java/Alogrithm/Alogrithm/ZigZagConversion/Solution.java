@@ -88,7 +88,7 @@ public class Solution {
     /**
      * 计算二维数组列数
      */
-    private static int getColNum(String s, int n) {
+    private int getColNum(String s, int n) {
         int x = s.length() / (2 * n - 2);
         int y = s.length() % (2 * n - 2);
         int l = x + 1 + x * (n - 2);

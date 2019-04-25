@@ -1,4 +1,4 @@
-package Alogrithm.Alogrithm.palindromeNumber;
+package Alogrithm.Alogrithm.PalindromeNumber;
 
 public class Solution {
     public boolean isPalindrome(int x) {
