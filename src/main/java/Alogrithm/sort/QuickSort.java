@@ -16,23 +16,33 @@ public class QuickSort {
      * @return
      */
     public static void QuickSort(int[] a, int from, int to) {
-        if(from >= to){
+        if (from >= to) {
             return;
         }
-        int index = (to - from) / 2;
-        while (from <  to) {
-            // 从前往后找到一个比基准元素大的 从后往前找到一个比基准元素小的 停下来 然后交换
-            while (from <  to && a[from] < a[index]) from++;
-            SwapUtil.swap(a, from, to);
-            while (from <  to && a[to] > a[index]) to--;
+        System.out.println("-----");
+        int sortedIndex = getSortedIndex(a, from, to);
+        QuickSort(a, from, sortedIndex - 1);
+        QuickSort(a, sortedIndex + 1, to);
+    }
+
+    /**
+     * 选出基准值 并且将大数放在右边 小数放在左边
+     */
+    public static int getSortedIndex(int[] a, int from, int to) {
+        // 取待排序数组段第一个数字为基准元素
+        int comp = a[from];
+        while (from < to) {
+            // 从前向后遍历 如果小于基准元素 就放着不变 否则向后遍历
+            while (from < to && a[from] < comp) ++from;
+            while (from < to && a[to] > comp) --to;
+            // 找到需要交换的交换
             SwapUtil.swap(a, from, to);
         }
-        QuickSort(a, from, index - 1);
-        QuickSort(a, index + 1, to);
+        return from;
     }
 
     public static void main(String[] args) {
-        int[] arr = {3, 5, 6, 2, 7, 4, 8, 9, 1};
+        int[] arr = {6, 5, -2, 9, 2, 1};
         QuickSort(arr, 0, arr.length - 1);
         System.out.println(JSON.toJSONString(arr));
     }
