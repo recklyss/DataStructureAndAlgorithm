@@ -5,31 +5,6 @@ package DataStructure.List;
  * @Description 链表实现
  **/
 public class MyList {
-    /**
-     * 链表节点
-     */
-    static class MyNode {
-        int val;
-        MyNode next;
-
-        MyNode(int val) {
-            this.val = val;
-            this.next = null;
-        }
-
-        public void setNext(MyNode next) {
-            this.next = next;
-        }
-
-        public MyNode getNext() {
-            return this.next;
-        }
-
-        @Override
-        public String toString() {
-            return "[val:"+val+",next:"+next+"]";
-        }
-    }
 
     /**
      * 头节点引用
@@ -45,7 +20,7 @@ public class MyList {
      */
     MyList(int[] arr) throws Exception {
         MyNode currn = null;
-        if(arr.length == 0){
+        if (arr.length == 0) {
             throw new Exception("new array cannot be empty");
         }
         for (int i = 0; i < arr.length; i++) {
@@ -64,7 +39,7 @@ public class MyList {
     /**
      * 向链表末尾添加元素
      */
-    public MyNode add(MyNode node){
+    public MyNode add(MyNode node) {
         if (node == null) {
             throw new NullPointerException("new node cannot be null");
         }
@@ -73,18 +48,32 @@ public class MyList {
         return first;
     }
 
+    public MyNode get(int index){
+        MyNode node = first;
+        if(index < 0){
+            throw new IndexOutOfBoundsException("Index out of bound exception");
+        }
+        while(index -- > 0){
+            node = node.next;
+            if(node == null){
+                throw new IndexOutOfBoundsException("Index out of bound exception");
+            }
+        }
+        return node;
+    }
+
     /**
      * @return 翻转链表 返回头节点 🙃
      */
-    public MyNode reverse(){
-        if(null == first || first.next == null){
+    public MyNode reverse() {
+        if (null == first || first.next == null) {
             return first;
         }
         MyNode pPrev = first;
         MyNode pNode = pPrev.next;
         pPrev.next = null;
         MyNode pNext = pNode.next;
-        while(pNext != null){
+        while (pNext != null) {
             pNode.next = pPrev;
             pPrev = pNode;
             pNode = pNext;
@@ -99,18 +88,21 @@ public class MyList {
      * 向指定下标插入元素
      */
     public MyNode add(MyNode node, int index) throws Exception {
-        if(index < 0){
-            throw new Exception("Index out of bound exception");
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index out of bound exception");
         }
-        if(index == 0){
-
+        if (index == 0) {
+            node.next = first;
+            first = node;
+            return first;
         }
         MyNode i = first;
-        while(i.next != null && index -- > 0){
+        // index-- > 1 保证插入在原下标的前面
+        while (i.next != null && index-- > 1) {
             i = i.next;
         }
-        if(index > 0){
-            throw new Exception("Index out of bound exception");
+        if (index > 0) {
+            throw new IndexOutOfBoundsException("Index out of bound exception");
         }
         node.next = i.next;
         i.next = node;
@@ -135,7 +127,7 @@ public class MyList {
                 j.next = i.next;
                 i.next = null;
                 i = j.next;
-            }else{
+            } else {
                 i = i.next;
                 j = j.next;
             }
@@ -145,9 +137,15 @@ public class MyList {
     public static void main(String[] args) throws Exception {
         int a[] = {3, 9};
         MyList list = new MyList(a);
+        list.add(new MyNode(7));
+        list.add(new MyNode(1), 0);
         System.out.println(list);
         list.reverse();
         System.out.println(list);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
+        System.out.println(list.get(3));
     }
 
     @Override
