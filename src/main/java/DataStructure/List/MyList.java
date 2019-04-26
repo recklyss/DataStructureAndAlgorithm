@@ -74,6 +74,28 @@ public class MyList {
     }
 
     /**
+     * @return 翻转链表 返回头节点 🙃
+     */
+    public MyNode reverse(){
+        if(null == first || first.next == null){
+            return first;
+        }
+        MyNode pPrev = first;
+        MyNode pNode = pPrev.next;
+        pPrev.next = null;
+        MyNode pNext = pNode.next;
+        while(pNext != null){
+            pNode.next = pPrev;
+            pPrev = pNode;
+            pNode = pNext;
+            pNext = pNext.next;
+        }
+        pNode.next = pPrev;
+        first = pNode;
+        return first;
+    }
+
+    /**
      * 向指定下标插入元素
      */
     public MyNode add(MyNode node, int index) throws Exception {
@@ -121,13 +143,11 @@ public class MyList {
     }
 
     public static void main(String[] args) throws Exception {
-        int a[] = {3, 3, 3, 4, 3, 6, 7, 8, 9};
+        int a[] = {3, 9};
         MyList list = new MyList(a);
-        MyNode node = new MyNode(7);
-        list.add(node, 1);
         System.out.println(list);
-        System.out.println(list.first);
-
+        list.reverse();
+        System.out.println(list);
     }
 
     @Override
