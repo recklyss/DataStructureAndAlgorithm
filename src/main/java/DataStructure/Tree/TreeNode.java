@@ -2,7 +2,7 @@ package DataStructure.Tree;
 
 /**
  * @Author zhangjiaheng
- * @Description
+ * @Description 二叉树节点元素
  **/
 public class TreeNode {
     int val;
