@@ -38,10 +38,37 @@ public class TreeOperation {
     }
 
     /**
+     * 创建完全二叉树
+     * 完全二叉树 ： 从上往下左右子女都存在 并且连续缺失叶节点 即最后一行 右边缺失 左边连续
+     * 即按行创建二叉树即可 使用队列完成
+     */
+    public static TreeNode createWholeTree(int[] a) {
+        if (a.length > 0) {
+            LinkedList<TreeNode> queue = new LinkedList<>();
+            TreeNode root = new TreeNode(a[0]);
+            queue.add(root);
+            int index = 0;
+            for (int i = 1; i < a.length; i++) {
+                TreeNode curn = queue.get(index);
+                TreeNode ti = new TreeNode(a[i]);
+                queue.add(ti);
+                if (curn.left == null) {
+                    curn.left = ti;
+                } else if (curn.right == null) {
+                    curn.right = ti;
+                    index++;
+                }
+            }
+            return root;
+        }
+        return null;
+    }
+
+    /**
      * 递归先序遍历二叉树 左-根-右
      */
-    public static void frontPrintOutTree(TreeNode root){
-        if(null != root){
+    public static void frontPrintOutTree(TreeNode root) {
+        if (null != root) {
             System.out.print(root.val);
             frontPrintOutTree(root.left);
             frontPrintOutTree(root.right);
@@ -51,8 +78,8 @@ public class TreeOperation {
     /**
      * 递归中序遍历二叉树 左-根-右
      */
-    public static void midPrintOutTree(TreeNode root){
-        if(null != root){
+    public static void midPrintOutTree(TreeNode root) {
+        if (null != root) {
             midPrintOutTree(root.left);
             System.out.print(root.val);
             midPrintOutTree(root.right);
@@ -62,8 +89,8 @@ public class TreeOperation {
     /**
      * 递归先序遍历二叉树 左-根-右
      */
-    public static void lastPrintOutTree(TreeNode root){
-        if(null != root){
+    public static void lastPrintOutTree(TreeNode root) {
+        if (null != root) {
             lastPrintOutTree(root.left);
             lastPrintOutTree(root.right);
             System.out.print(root.val);
@@ -73,16 +100,16 @@ public class TreeOperation {
     /**
      * 按层遍历二叉树
      */
-    public static void levelPrintOutTree(TreeNode root){
-        if(null != root){
+    public static void levelPrintOutTree(TreeNode root) {
+        if (null != root) {
             LinkedList<TreeNode> queue = new LinkedList<>();
             queue.add(root);
             TreeNode i = root;
-            while(!queue.isEmpty()){
-                if(i.left != null){
+            while (!queue.isEmpty()) {
+                if (i.left != null) {
                     queue.add(i.left);
                 }
-                if(i.right != null){
+                if (i.right != null) {
                     queue.add(i.right);
                 }
                 System.out.print(i.val);
@@ -103,5 +130,13 @@ public class TreeOperation {
         lastPrintOutTree(root);
         System.out.println();
         levelPrintOutTree(root);
+        System.out.println();
+        System.out.println("----------------------");
+        TreeNode root2 = createWholeTree(a);
+        levelPrintOutTree(root2);
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
 }
