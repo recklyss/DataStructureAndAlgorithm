@@ -1,8 +1,5 @@
 package Alogrithm.Alogrithm.LiBaiDajiu;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 李白大酒 题目解法
  */
@@ -50,7 +47,5 @@ public class Solution {
 
     public static void main(String[] args) {
         printWithNum();
-        List<Integer[]> list = new ArrayList<Integer[]>();
-        Integer a[] = new Integer[2147483647];
     }
 }

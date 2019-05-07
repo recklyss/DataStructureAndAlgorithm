@@ -19,7 +19,6 @@ public class QuickSort {
         if (from >= to) {
             return;
         }
-        System.out.println("-----");
         int sortedIndex = getSortedIndex(a, from, to);
         QuickSort(a, from, sortedIndex - 1);
         QuickSort(a, sortedIndex + 1, to);

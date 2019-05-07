@@ -134,9 +134,5 @@ public class TreeOperation {
         System.out.println("----------------------");
         TreeNode root2 = createWholeTree(a);
         levelPrintOutTree(root2);
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
     }
 }
