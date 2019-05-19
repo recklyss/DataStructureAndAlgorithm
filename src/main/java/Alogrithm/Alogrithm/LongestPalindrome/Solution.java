@@ -21,8 +21,10 @@ public class Solution {
         int left = index - 1;
         int right = index + 1;
         boolean flag = false;
-        if (right < s.length() && s.charAt(index + 1) == c) {
-            right = index + 2;
+        int tI = index;
+        while (right < s.length() && s.charAt(tI + 1) == c) {
+            right++;
+            tI++;
             flag = true;
         }
         for (; ; ) {
@@ -32,15 +34,15 @@ public class Solution {
             if (s.charAt(left) == s.charAt(right)) {
                 left--;
                 right++;
-            }else{
-
+            } else {
+                break;
             }
         }
-        return s.substring(left + 1, right - left);
+        return s.substring(left + 1, right);
     }
 
-    public static void main(String[] args){
-        System.out.println(new Solution().longestPalindrome("asasqwertrewq"));
+    public static void main(String[] args) {
+        System.out.println(new Solution().longestPalindrome("asassssssawq"));
     }
 
 }
