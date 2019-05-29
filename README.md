@@ -1,2 +1,15 @@
-# DataStructureAndAlgorithm
-基础的数据结构与算法以及算法题目解等
+## DataStructureAndAlgorithm
+
+#### 基础的数据结构与算法
+- 链表
+- 二叉树
+- 队列
+- 栈
+
+#### 以及算法题目解等，争取保证每日一题
+- 八种排序算法
+- leetcode题目题解
+
+#### 设计模式总结归纳
+
+##### 23种设计模式
