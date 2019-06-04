@@ -1,5 +1,7 @@
 package Alogrithm.sort;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * @Author zhangjiaheng
  * @Description 快速排序
@@ -39,24 +41,8 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        System.out.println(new QuickSort().myAtoi("-6147483648"));
-    }
-
-    public int myAtoi(String str) {
-        str = str.trim();
-        char[] chars = str.toCharArray();
-        if (chars.length > 0 && (chars[0] == '-' || chars[0] == '+' || (chars[0] >= '0' && chars[0] <= '9'))) {
-            boolean flag = chars[0] == '-';
-            int i = chars[0] == '-' || chars[0] == '+' ? 1 : 0;
-            long sum = 0;
-            for (; i < chars.length && (chars[i] >= '0' && chars[i] <= '9'); i++) {
-                sum = sum * 10 + (chars[i] - 48);
-                if (sum > Integer.MAX_VALUE) {
-                    return flag ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-                }
-            }
-            return (flag ? -1 : 1) * (int) sum;
-        }
-        return 0;
+        int[] arr = {6, 5, -2, 9, 2, 1};
+        QuickSort(arr, 0, arr.length - 1);
+        System.out.println(JSON.toJSONString(arr));
     }
 }
