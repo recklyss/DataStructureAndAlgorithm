@@ -29,19 +29,24 @@ public class QuickSort {
      */
     public static int getSortedIndex(int[] a, int from, int to) {
         // 取待排序数组段第一个数字为基准元素
-        int comp = a[from];
+        int comp = from;
         while (from < to) {
             // 从前向后遍历 如果小于基准元素 就放着不变 否则向后遍历
-            while (from < to && a[from] < comp) ++from;
-            while (from < to && a[to] > comp) --to;
-            // 找到需要交换的交换
-            SwapUtil.swap(a, from, to);
+            // 下面两个while循环的顺序很重要
+            while (from < to && a[to] >= a[comp]) --to;
+            while (from < to && a[from] <= a[comp]) ++from;
+            if (from < to) {
+                System.out.println(JSON.toJSONString(a));
+                // 找到需要交换的交换
+                SwapUtil.swap(a, from, to);
+            }
         }
+        SwapUtil.swap(a, from, comp);
         return from;
     }
 
     public static void main(String[] args) {
-        int[] arr = {6, 5, -2, 9, 2, 1};
+        int[] arr = {-3, 6, 5, -2, 9, 2, 1, 1, 1, 3, 12};
         QuickSort(arr, 0, arr.length - 1);
         System.out.println(JSON.toJSONString(arr));
     }
