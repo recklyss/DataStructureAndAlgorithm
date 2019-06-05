@@ -24,7 +24,7 @@ public class DoubleLockSingleton {
         if (null == INSTANCE) {
             synchronized (DoubleLockSingleton.class) {
                 if (null == INSTANCE) {
-                    // 此处可能会出现指令重排序 new对象并不是
+                    // 此处可能会出现指令重排序 new对象并不是原子操作
                     INSTANCE = new DoubleLockSingleton();
                 }
             }
