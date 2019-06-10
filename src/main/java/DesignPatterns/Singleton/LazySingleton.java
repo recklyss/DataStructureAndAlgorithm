@@ -14,7 +14,7 @@ public class LazySingleton {
 
     private String name = "懒汉型单例";
 
-    public static LazySingleton getInstance(){
+    public synchronized static LazySingleton getInstance(){
         if(null == INSTANCE){
             INSTANCE = new LazySingleton();
         }

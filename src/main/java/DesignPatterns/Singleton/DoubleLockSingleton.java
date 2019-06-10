@@ -9,10 +9,7 @@ public class DoubleLockSingleton {
     private DoubleLockSingleton() {
     }
 
-    /**
-     * 使用volatile屏蔽分配对象时的指令重排序
-     */
-    private volatile static DoubleLockSingleton INSTANCE;
+    private static DoubleLockSingleton INSTANCE;
 
     private String name = "双重锁检测机制";
 

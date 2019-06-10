@@ -14,7 +14,7 @@ public class TripleLockSingleton {
     /**
      * 使用volatile屏蔽分配对象时的指令重排序
      */
-    private static TripleLockSingleton INSTANCE;
+    private volatile static TripleLockSingleton INSTANCE;
 
     private String name = "双重锁检测机制";
 
