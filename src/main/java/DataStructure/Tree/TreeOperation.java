@@ -1,6 +1,7 @@
 package DataStructure.Tree;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * @Author zhangjiaheng
@@ -69,9 +70,31 @@ public class TreeOperation {
      */
     public static void frontPrintOutTree(TreeNode root) {
         if (null != root) {
-            System.out.print(root.val);
+            System.out.print(root.val + " | ");
             frontPrintOutTree(root.left);
             frontPrintOutTree(root.right);
+        }
+    }
+
+    /**
+     * 二叉树非递归先序遍历
+     * 思路：先将根节点入栈，然后循环执行以下操作
+     * 出栈，若出栈节点不为空，就将节点的左右子女入栈，循环执行
+     */
+    public static void frontPrintByLoop(TreeNode root) {
+        if (root != null) {
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                System.out.print(node.val + " | ");
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+            }
         }
     }
 
@@ -81,19 +104,49 @@ public class TreeOperation {
     public static void midPrintOutTree(TreeNode root) {
         if (null != root) {
             midPrintOutTree(root.left);
-            System.out.print(root.val);
+            System.out.print(root.val + " | ");
             midPrintOutTree(root.right);
         }
     }
 
     /**
-     * 递归先序遍历二叉树 左-根-右
+     * 非递归中序遍历
+     * 思路：使用栈，先将树的左子女入栈
+     * 然后在出栈时，每出栈一个元素
+     * 判断其是否有右子树，有的话入栈
+     */
+    public static void midPrintByLoop(TreeNode root) {
+        if (root != null) {
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode node = root;
+            stack.push(node);
+            while (node.left != null) {
+                stack.push(node.left);
+                node = node.left;
+            }
+            while (!stack.isEmpty()) {
+                node = stack.pop();
+                if(null != node){
+                    TreeNode n = node.right;
+                    while (n != null){
+                        stack.push(n);
+                        n = n.left;
+                    }
+                    System.out.print(node.val + " | ");
+                }
+            }
+
+        }
+    }
+
+    /**
+     * 递归后序遍历二叉树 左-右-根
      */
     public static void lastPrintOutTree(TreeNode root) {
         if (null != root) {
             lastPrintOutTree(root.left);
             lastPrintOutTree(root.right);
-            System.out.print(root.val);
+            System.out.print(root.val + " | ");
         }
     }
 
@@ -121,18 +174,7 @@ public class TreeOperation {
 
     public static void main(String[] args) {
         int[] a = {3, 2, 5, 8, 4, 7, 6, 9, 1};
-        TreeNode root = createSearchTree(a);
-        System.out.println(root);
-        frontPrintOutTree(root);
-        System.out.println();
-        midPrintOutTree(root);
-        System.out.println();
-        lastPrintOutTree(root);
-        System.out.println();
-        levelPrintOutTree(root);
-        System.out.println();
-        System.out.println("----------------------");
-        TreeNode root2 = createWholeTree(a);
-        levelPrintOutTree(root2);
+        TreeNode root = createWholeTree(a);
+        midPrintByLoop(root);
     }
 }
