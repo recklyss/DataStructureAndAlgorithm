@@ -14,7 +14,7 @@ public enum EnumSingleton {
         return name;
     }
 
-    private static EnumSingleton getInstance() {
+    public static EnumSingleton getInstance() {
         return INSTANCE;
     }
 
