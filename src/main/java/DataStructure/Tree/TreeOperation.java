@@ -176,7 +176,7 @@ public class TreeOperation {
                     }
                 }
             }
-            while (!stackReverse.isEmpty()){
+            while (!stackReverse.isEmpty()) {
                 TreeNode node = stackReverse.pop();
                 System.out.print(node.val + " | ");
             }
@@ -184,31 +184,24 @@ public class TreeOperation {
     }
 
     /**
-     * 非递归后序遍历二叉树
-     * 解法二
-     * 相较于上面那个解法较复杂不易理解
+     * 非递归后序遍历二叉树 只使用一个栈
      */
-    public static void lastPrintByLoop(TreeNode root) {
-        if(root==null){
-            return;
-        }
-        TreeNode node = root;
-        Stack<TreeNode> stack = new Stack<>();
-        Stack<TreeNode> markStack = new Stack<>();
-        while(node!=null||!stack.isEmpty()){
-            while(node!=null){
-                stack.push(node);
-                node = node.left;
-            }
-
-            while(!markStack.isEmpty()&&markStack.peek()==stack.peek()){
-                markStack.pop();
-                System.out.print(stack.pop().val + " | ");
-            }
-            if(!stack.isEmpty()){
-                node = stack.peek();
-                markStack.push(node);
-                node = node.right;
+    public static void lastPrintByOneStack(TreeNode root) {
+        if (null != root) {
+            TreeNode h = root;
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(h);
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.peek();
+                if (node.left != null && node.left != h && node.right != h) {
+                    stack.push(node.left);
+                } else if (null != node.right && node.right != h) {
+                    stack.push(node.right);
+                } else {
+                    node = stack.pop();
+                    System.out.print(node.val + " | ");
+                    h = node;
+                }
             }
         }
     }
@@ -236,22 +229,23 @@ public class TreeOperation {
     }
 
     public static void main(String[] args) {
-        int[] a = {3, 2, 1, 8, 4, 7, 6, 9, 0, 5};
+        int[] a = {3, 6, 1, 4, 2, 5, 9, 8, 0, 7};
         TreeNode root = createSearchTree(a);
+        System.out.println("\n----------------先序递归");
         frontPrintOutTree(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------先序非递归");
         frontPrintByLoop(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------中序递归");
         midPrintOutTree(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------中序非递归");
         midPrintByLoop(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------后序递归");
         lastPrintOutTree(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------后序非递归两个栈");
         lastPrintByOtherStack(root);
-        System.out.println("\n----------------");
-        lastPrintByLoop(root);
-        System.out.println("\n----------------");
+        System.out.println("\n----------------后序非递归一个栈");
+        lastPrintByOneStack(root);
+        System.out.println("\n----------------按层遍历");
         levelPrintOutTree(root);
     }
 }
