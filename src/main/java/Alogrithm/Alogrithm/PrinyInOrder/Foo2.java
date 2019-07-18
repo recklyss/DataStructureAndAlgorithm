@@ -1,4 +1,4 @@
-package Alogrithm.Alogrithm.PrinyByOrder;
+package Alogrithm.Alogrithm.PrinyInOrder;
 
 public class Foo2 {
 

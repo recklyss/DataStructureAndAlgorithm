@@ -1,4 +1,4 @@
-package Alogrithm.Alogrithm.PrinyByOrder;
+package Alogrithm.Alogrithm.PrinyInOrder;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
