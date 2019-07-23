@@ -4,3 +4,5 @@
 /Algorithm/target/
 /target/
 *.iml
+/.vscode/
+/.settings/
