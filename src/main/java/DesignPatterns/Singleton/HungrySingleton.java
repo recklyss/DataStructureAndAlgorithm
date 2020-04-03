@@ -6,13 +6,8 @@ package DesignPatterns.Singleton;
  **/
 public class HungrySingleton {
 
+    private static final HungrySingleton INSTANCE = new HungrySingleton();
     private String name = "我是饿汉型单例";
-
-    public String getName() {
-        return this.name;
-    }
-
-    public static final HungrySingleton INSTANCE = new HungrySingleton();
 
     /**
      * 私有构造
@@ -35,5 +30,9 @@ public class HungrySingleton {
                 System.out.println("实例引用地址：" + singleton + " 实例成员：" + singleton.getName());
             }).start();
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

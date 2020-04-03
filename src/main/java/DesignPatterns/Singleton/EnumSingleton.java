@@ -17,18 +17,4 @@ public enum EnumSingleton {
     public static EnumSingleton getInstance() {
         return INSTANCE;
     }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            new Thread(() -> {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                EnumSingleton singleton = EnumSingleton.getInstance();
-                System.out.println("实例：" + singleton.hashCode() + " 实例成员：" + singleton.getName());
-            }).start();
-        }
-    }
 }

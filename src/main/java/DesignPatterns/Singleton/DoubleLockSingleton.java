@@ -9,13 +9,7 @@ public class DoubleLockSingleton {
     private DoubleLockSingleton() {
     }
 
-    private static DoubleLockSingleton INSTANCE;
-
-    private String name = "双重锁检测机制";
-
-    public String getName() {
-        return name;
-    }
+    private static volatile DoubleLockSingleton INSTANCE;
 
     public static DoubleLockSingleton getInstance() {
         if (null == INSTANCE) {
@@ -27,19 +21,5 @@ public class DoubleLockSingleton {
             }
         }
         return INSTANCE;
-    }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            new Thread(() -> {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                DoubleLockSingleton singleton = DoubleLockSingleton.getInstance();
-                System.out.println("实例引用地址：" + singleton + " 实例成员：" + singleton.getName());
-            }).start();
-        }
     }
 }

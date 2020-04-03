@@ -9,31 +9,11 @@ public class StaticInnerClassSingleton {
     private StaticInnerClassSingleton() {
     }
 
-    private String name = "静态内部类单例";
-
-    public String getName() {
-        return name;
-    }
-
     private static class SingletonHolder {
         public static final StaticInnerClassSingleton INSTANCE = new StaticInnerClassSingleton();
     }
 
     public static StaticInnerClassSingleton getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            new Thread(() -> {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                StaticInnerClassSingleton singleton = StaticInnerClassSingleton.getInstance();
-                System.out.println("实例引用地址：" + singleton + " 实例成员：" + singleton.getName());
-            }).start();
-        }
     }
 }
